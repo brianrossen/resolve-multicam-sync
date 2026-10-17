@@ -1,4 +1,4 @@
-"""Sync by timecode when it is there: LTC recorded as audio on a camera channel (Tentacle Sync and similar
+"""Sync by timecode when it is there: LTC recorded as audio on a camera channel (Tentacle Sync, Deity and similar
 boxes feed the camera's mic input) plus the recorders' broadcast-WAV timecode.
 
 Many cameras keep their own free-running timecode in the file metadata even when a sync box is plugged in,
