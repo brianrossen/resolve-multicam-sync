@@ -27,16 +27,23 @@ Typical result on a real wedding day: ~800 clips from 6 cameras and 16 recording
 - To build straight into Resolve: **DaVinci Resolve Studio** (external scripting is a Studio feature), open, with a project loaded,
   and **Preferences → System → General → External scripting using: Local**.
 - Using `--fcpxml` instead? Any editor that imports FCPXML works (Resolve free or Studio, Final Cut Pro, Premiere Pro via XML).
-- **Python 3.9+** with **numpy**
+- **Python 3.9+** (numpy and Pillow go into the repo's own `.venv`, see below)
 - **ffmpeg / ffprobe** on the PATH
 
 Easiest setup: let Claude Code do it (see below). Manual setup on a Mac:
 
 ```
 brew install python ffmpeg
-python3 -m pip install numpy
-git clone <this repo> && cd resolve-multicam-sync
+git clone https://github.com/brianrossen/resolve-multicam-sync.git && cd resolve-multicam-sync
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m tests.test_solve          # should end with OK
 ```
+
+The `.venv` folder keeps the tool's Python packages inside the repo, so it never touches your system Python
+(Homebrew's Python refuses a plain `pip install`). In each new Terminal window, run `source .venv/bin/activate`
+from the repo folder first; then the `python3 -m ...` commands below use it. On Windows the paths are
+`.venv\Scripts\python` and `.venv\Scripts\activate`.
 
 ## Usage
 
@@ -114,7 +121,7 @@ Categories map to colors through `"content_colors"` in your defaults file:
                       "second_camera": { "dancing": "Tan" }, "main_camera": "A" } }
 ```
 
-It only changes clip colors on that timeline; nothing moves. Contact sheets need Pillow (`python3 -m pip install pillow`).
+It only changes clip colors on that timeline; nothing moves. Contact sheets use Pillow (installed by `requirements.txt`).
 
 ## Use it with Claude Code
 
@@ -123,6 +130,20 @@ Give Claude Code this repo's link and say something like:
 > Set up resolve-multicam-sync from <link> and sync everything in "/path/to/Shoot Day" into Resolve.
 
 Claude reads [`CLAUDE.md`](CLAUDE.md), installs what's missing, runs a dry run, shows you the sync summary, then builds the timeline.
+
+## Updating
+
+Your copy only changes when you update it:
+
+```
+cd resolve-multicam-sync
+git pull
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m tests.test_solve
+```
+
+Or tell Claude Code "update resolve-multicam-sync". Your `~/.resolve-multicam-sync.json` defaults live outside the
+repo, so updates never overwrite them. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 
 ## How accurate is it?
 
