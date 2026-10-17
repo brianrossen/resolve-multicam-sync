@@ -1,0 +1,27 @@
+{
+  "_comment": "Optional. Priority: clip_colors > camera_colors_always > time_colors > camera_colors. Colors are Resolve clip color names: Orange, Apricot, Yellow, Lime, Olive, Green, Teal, Navy, Blue, Purple, Violet, Pink, Tan, Beige, Brown, Chocolate. Times are local clock times of the shoot day. A window can be limited to certain cameras with \"cameras\": [\"C\"] (camera label = file name without the numbers).",
+
+  "_auto_day_parts": "Instead of writing time_colors by hand, set \"auto_day_parts\": true to derive them from the recordings' names (vows, first look, ceremony, speeches, DJ ...).",
+
+  "camera_colors": {
+    "C": "Tan"
+  },
+
+  "camera_colors_always": {
+    "DJI": "Lime"
+  },
+
+  "time_colors": [
+    { "from": "13:45", "to": "15:10", "color": "Pink",   "label": "Getting ready" },
+    { "from": "15:10", "to": "15:30", "color": "Orange", "label": "First looks" },
+    { "from": "15:30", "to": "16:40", "color": "Yellow", "label": "Portraits" },
+    { "from": "16:40", "to": "18:05", "color": "Orange", "label": "Ceremony" },
+    { "from": "18:05", "to": "20:25", "color": "Green",  "label": "Dinner + toasts" },
+    { "from": "20:25", "to": "23:59", "color": "Brown",  "label": "Dancing" },
+    { "from": "20:25", "to": "23:59", "color": "Tan",    "cameras": ["C"] }
+  ],
+
+  "clip_colors": {
+    "A0001.MP4": "Teal"
+  }
+}
