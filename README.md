@@ -4,6 +4,8 @@
 
 Weddings, events, interviews, concerts, documentaries: any shoot with several cameras and separate audio recorders, no timecode required. It does what PluralEyes does, at the scale of a full shoot day, and it builds the timeline for you.
 
+See it on a real wedding day, and how to set it up with Claude Code: **[AI multicam sync for DaVinci Resolve](https://brianrossen.com/blog/multicam-sync/)**.
+
 ```
 python3 -m resolve_multicam_sync "/path/to/Shoot Day"
 ```
